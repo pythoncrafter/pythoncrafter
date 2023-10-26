@@ -1,6 +1,79 @@
 import sqlite3
 from kivy.app import App
+<<<<<<< Updated upstream
 from kivy.uix.label import Label
+=======
+from kivy.uix.button import Button
+from kivy.uix.boxlayout import BoxLayout
+
+# Connect to SQLite database
+conn = sqlite3.connect('research_data.db')
+c = conn.cursor()
+
+# Create Players table
+c.execute('''CREATE TABLE IF NOT EXISTS Players (
+             PlayerID INTEGER PRIMARY KEY,
+             PlayerName TEXT,
+             Age INTEGER,
+             Nationality TEXT,
+             Sport TEXT,
+             TeamID INTEGER,
+             TeamName TEXT
+             )''')
+
+# Create Coaches table
+c.execute('''CREATE TABLE IF NOT EXISTS Coaches (
+             CoachID INTEGER PRIMARY KEY,
+             CoachName TEXT,
+             Experience TEXT,
+             TeamID INTEGER,
+             TeamName TEXT
+             )''')
+
+conn.commit()
+
+
+class DatabaseHandler:
+    def __init__(self):
+        self.conn = sqlite3.connect('research_data.db')
+        self.c = self.conn.cursor()
+
+    def close_connection(self):
+        self.conn.close()
+
+    def handle_player_data_input(self, player_name, age, nationality, sport, team_id, team_name):
+        self.c.execute("INSERT INTO Players (PlayerName, Age, Nationality, Sport, TeamID, TeamName) VALUES (?, ?, ?, ?, ?, ?)",
+                       (player_name, age, nationality, sport, team_id, team_name))
+        self.conn.commit()
+
+    def handle_coach_data_input(self, coach_name, experience, team_id, team_name):
+        self.c.execute("INSERT INTO Coaches (CoachName, Experience, TeamID, TeamName) VALUES (?, ?, ?, ?)",
+                       (coach_name, experience, team_id, team_name))
+        self.conn.commit()
+
+
+class MyApp(App):
+    def build(self):
+        db_handler = DatabaseHandler()
+
+        layout = BoxLayout(orientation='vertical')
+
+        # Button to add player
+        add_player_button = Button(text='Add Player', size_hint=(None, None), size=(150, 50))
+        add_player_button.bind(on_press=lambda instance: db_handler.handle_player_data_input("John Doe", 25, "American", "Basketball", 101, "Team A"))
+        layout.add_widget(add_player_button)
+
+        # Button to add coach
+        add_coach_button = Button(text='Add Coach', size_hint=(None, None), size=(150, 50))
+        add_coach_button.bind(on_press=lambda instance: db_handler.handle_coach_data_input("Adam Lee", "5 years", 101, "Team A"))
+        layout.add_widget(add_coach_button)
+
+        return layout
+
+
+if __name__ == '__main__':
+    MyApp().run()
+>>>>>>> Stashed changes
 
 
 class ResearchDatabase:
