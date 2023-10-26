@@ -157,11 +157,11 @@ class ResearchApp(App):
 
 
 if __name__ == '__main__':
-    research_db = ResearchDatabase('research_data.db')
-    user = User('research_data.db')
-    admin = Admin('research_data.db')
-    coach = Coach('research_data.db')
-    trainer = Trainer('research_data.db')
+    research_db = ResearchDatabase('data/research_data.db')
+    user = User('data/research_data.db')
+    admin = Admin('data/research_data.db')
+    coach = Coach('data/research_data.db')
+    trainer = Trainer('data/research_data.db')
 
     # Run the Kivy app
     ResearchApp().run()
