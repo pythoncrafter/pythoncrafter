@@ -1,7 +1,11 @@
 import sqlite3
 from kivy.app import App
 from kivy.uix.label import Label
-
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
+from kivy.uix.textinput import TextInput
+from kivy.uix.button import Button
 
 class ResearchDatabase:
     def __init__(self, db_name):
@@ -117,10 +121,39 @@ class Trainer(ResearchDatabase):
         self.insert_data(query, trainer_data)
         print("Trainer entry created successfully.")
 
-
 class ResearchApp(App):
     def build(self):
-        return Label(text='Welcome to ResearchApp')
+        layout = BoxLayout(orientation='vertical')
+
+        # Text input fields for user and admin
+        user_input = TextInput(text='User input')
+        admin_input = TextInput(text='Admin input')
+        coach_input = TextInput(text='Coach input')
+        trainer_input = TextInput(text='Trainer input')
+
+        # Buttons for user and admin interactions
+        user_button = Button(text='Submit User Input')
+        admin_button = Button(text='Submit Admin Input')
+        coach_button = Button(text='Submit Coach Input')
+        trainer_button = Button(text='Submit Trainer Input')
+
+        layout.add_widget(Label(text='User Input:'))
+        layout.add_widget(user_input)
+        layout.add_widget(user_button)
+
+        layout.add_widget(Label(text='Admin Input:'))
+        layout.add_widget(admin_input)
+        layout.add_widget(admin_button)
+
+        layout.add_widget(Label(text='Coach Input:'))
+        layout.add_widget(coach_input)
+        layout.add_widget(coach_button)
+
+        layout.add_widget(Label(text='Trainer Input:'))
+        layout.add_widget(trainer_input)
+        layout.add_widget(trainer_button)
+
+        return layout
 
 
 if __name__ == '__main__':
@@ -129,4 +162,8 @@ if __name__ == '__main__':
     admin = Admin('research_data.db')
     coach = Coach('research_data.db')
     trainer = Trainer('research_data.db')
+
+    # Run the Kivy app
     ResearchApp().run()
+
+    research_db.close_connection()
