@@ -9,11 +9,10 @@ from kivy.uix.button import Button
 
 class ResearchDatabase:
     def __init__(self, db_name):
-        self.db_name = db_name
-        self.conn = sqlite3.connect(self.db_name)
+        self.conn = sqlite3.connect(db_name)
         self.c = self.conn.cursor()
         self.create_tables()
-        
+
     def create_tables(self):
         self.c.execute('''CREATE TABLE IF NOT EXISTS Players (
                          PlayerID INTEGER PRIMARY KEY,
@@ -124,15 +123,6 @@ class Trainer(ResearchDatabase):
 
 class ResearchApp(App):
     def build(self):
-        data_folder = 'data'
-        db_file = [file for file in os.listdir(data_folder) if file.endswith('.db')]
-        if db_file:
-            db_path = os.path.join(data_folder, db_file[0])
-            research_db = ResearchDatabase(db_path)
-        else:
-            print("No database file found in the data folder.")
-            return
-
         layout = BoxLayout(orientation='vertical')
 
         # Text input fields for user and admin
@@ -167,6 +157,7 @@ class ResearchApp(App):
 
 
 if __name__ == '__main__':
+    db_name = research_db
     research_db = ResearchDatabase('data/research_data.db')
     user = User('data/research_data.db')
     admin = Admin('data/research_data.db')
