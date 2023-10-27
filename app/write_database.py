@@ -38,7 +38,12 @@ conn.close()
 # Function to print all the generated data
 def print_generated_data():
     for data in generated_data:
-        print(f"PlayerName: {data['PlayerName']}, Age: {data['Age']}, Nationality: {data['Nationality']}, Sport: {data['Sport']}, TeamID: {data['TeamID']}, TeamName: {data['TeamName']}")
+        print(f"PlayerName: {data['PlayerName']}, "
+              f"Age: {data['Age']}, "
+              f"Nationality: {data['Nationality']}, "
+              f"Sport: {data['Sport']}, "
+              f"TeamID: {data['TeamID']}, "
+              f"TeamName: {data['TeamName']}")
 
 if __name__ == '__main__':
     generate_random_player_data()
