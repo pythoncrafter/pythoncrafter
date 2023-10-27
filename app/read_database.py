@@ -1,12 +1,24 @@
+# read_database.py
+
 import sqlite3
 
-conn = sqlite3.connect('research_data.db')
-c = conn.cursor()
+def read_data():
+    conn = sqlite3.connect('research_data.db')
+    c = conn.cursor()
 
-# Example of reading and displaying data from the Players table
-c.execute("SELECT * FROM Players")
-rows = c.fetchall()
-for row in rows:
-    print(row)
+    c.execute('SELECT * FROM Players')
+    print(c.fetchall())
 
-conn.close()
+    c.execute('SELECT * FROM TrainingActivities')
+    print(c.fetchall())
+
+    c.execute('SELECT * FROM DecisionMaking')
+    print(c.fetchall())
+
+    c.execute('SELECT * FROM Coaches')
+    print(c.fetchall())
+
+    c.execute('SELECT * FROM Trainers')
+    print(c.fetchall())
+
+    conn.close()
