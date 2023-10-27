@@ -171,7 +171,7 @@ class ResearchApp(App):
 
 
 if __name__ == '__main__':
-    researchDatabase.validate_database()
+    ResearchDatabase.validate_database()
     data_folder_path = ResearchDatabase.get_data_folder_path(__file__)
     research_db = ResearchDatabase(data_folder_path)
     user = User(data_folder_path)
