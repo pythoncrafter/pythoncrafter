@@ -9,13 +9,13 @@ def main():
     create_tables()
     print("Tables created.") 
 
-    write_data()
+    generate_random_player_data()
     print("Data written to the database.")
 
     read_data()
     print("Data read from the database.")
 
-    edit_entries()
+    edit_view_entries()
     print("Entries edited and viewed from the database.")
 
 if __name__ == '__main__':
