@@ -1,3 +1,4 @@
+import sqlite3
 import random
 
 # Function to generate random player data
@@ -12,8 +13,16 @@ def generate_random_player_data():
     }
     return player_data
 
-# Generate and print 5 random player data entries
+# Connect to the database
+conn = sqlite3.connect('research_data.db')
+c = conn.cursor()
+
+# Generate and insert 5 random player data entries
 for _ in range(5):
     data = generate_random_player_data()
-    print(data)
- 
+    c.execute('''INSERT INTO Players (PlayerName, Age, Nationality, Sport, TeamID, TeamName) 
+                 VALUES (?, ?, ?, ?, ?, ?)''', 
+              (data["PlayerName"], data["Age"], data["Nationality"], data["Sport"], data["TeamID"], data["TeamName"]))
+
+conn.commit()
+conn.close()
