@@ -146,35 +146,85 @@ class ResearchApp(App):
         layout = BoxLayout(orientation='vertical')
 
         # Text input fields for user and admin
-        user_input = TextInput(text='User input')
-        admin_input = TextInput(text='Admin input')
-        coach_input = TextInput(text='Coach input')
-        trainer_input = TextInput(text='Trainer input')
+        player_name_input = TextInput(hint_text='Player Name')
+        player_age_input = TextInput(hint_text='Player Age')
+        nationality_input = TextInput(hint_text='Nationality')
+        sport_input = TextInput(hint_text='Sport')
+        team_id_input = TextInput(hint_text='Team ID')
+        team_name_input = TextInput(hint_text='Team Name')
 
-        # Buttons for user and admin interactions
-        user_button = Button(text='Submit User Input')
-        admin_button = Button(text='Submit Admin Input')
-        coach_button = Button(text='Submit Coach Input')
-        trainer_button = Button(text='Submit Trainer Input')
+        # Button for adding player information
+        add_player_button = Button(text='Add Player', on_press=self.add_player)
 
-        layout.add_widget(Label(text='User Input:'))
-        layout.add_widget(user_input)
-        layout.add_widget(user_button)
+        layout.add_widget(Label(text='Add Player Information:'))
+        layout.add_widget(player_name_input)
+        layout.add_widget(player_age_input)
+        layout.add_widget(nationality_input)
+        layout.add_widget(sport_input)
+        layout.add_widget(team_id_input)
+        layout.add_widget(team_name_input)
+        layout.add_widget(add_player_button)
 
-        layout.add_widget(Label(text='Admin Input:'))
-        layout.add_widget(admin_input)
-        layout.add_widget(admin_button)
+        # Create an instance of the ResearchDatabase class
+        data_folder_path = ResearchDatabase.get_data_folder_path(__file__)
+        research_db = ResearchDatabase(data_folder_path)
+        user = User(data_folder_path)
+        admin = Admin(data_folder_path)
+        coach = Coach(data_folder_path)
+        trainer = Trainer(data_folder_path)
 
-        layout.add_widget(Label(text='Coach Input:'))
-        layout.add_widget(coach_input)
-        layout.add_widget(coach_button)
-
-        layout.add_widget(Label(text='Trainer Input:'))
-        layout.add_widget(trainer_input)
-        layout.add_widget(trainer_button)
+        self.research_db = research_db
+        self.user = user
+        self.admin = admin
+        self.coach = coach
+        self.trainer = trainer
 
         return layout
 
+    def add_player(self, instance):
+        # Get the player information from the input fields
+        player_data = (
+            player_name_input.text,
+            player_age_input.text,
+            nationality_input.text,
+            sport_input.text,
+            team_id_input.text,
+            team_name_input.text
+        )
+        self.user.create_player_entry(player_data)
+
+    def add_coach(self, instance):
+        # Get the coach information from the input fields
+        coach_data = (
+            coach_name_input.text,
+            coach_experience_input.text,
+            coach_team_id_input.text,
+            coach_team_name_input.text
+        )
+        coach.create_coach_entry(coach_data)
+
+    def add_trainer(self, instance):
+        # Get the trainer information from the input fields
+        trainer_data = (
+            trainer_name_input.text,
+            trainer_specialization_input.text,
+            trainer_team_id_input.text,
+            trainer_team_name_input.text
+        )
+        trainer.create_trainer_entry(trainer_data)
+
+    def add_admin(self, instance):
+        # Get the admin information from the input fields
+        admin_data = (
+            admin_name_input.text,
+            admin_experience_input.text,
+            admin_team_id_input.text,
+            admin_team_name_input.text
+        )
+        admin.create_admin_entry(admin_data)
+
+    def on_stop(self):
+        self.research_db.close_connection()
 
 if __name__ == '__main__':
     data_folder_path = ResearchDatabase.get_data_folder_path(__file__)
