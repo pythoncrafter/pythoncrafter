@@ -1,5 +1,3 @@
-# read_database.py
-
 import sqlite3
 
 def read_data():
@@ -22,3 +20,7 @@ def read_data():
     print(c.fetchall())
 
     conn.close()
+
+if __name__ == '__main__':
+    # Call the function to read data
+    read_data()
