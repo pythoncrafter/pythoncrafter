@@ -35,5 +35,13 @@ for _ in range(5):
 conn.commit()
 conn.close()
 
-# Print all the generated data
-print(generated_data)
+# Function to print all the generated data
+def print_generated_data():
+    print(generated_data)
+
+# Call the function to print the generated data
+#print_generated_data()
+
+if __name__ == '__main__':
+    generate_random_player_data()
+    print_generated_data()
