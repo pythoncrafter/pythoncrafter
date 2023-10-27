@@ -16,3 +16,4 @@ def generate_random_player_data():
 for _ in range(5):
     data = generate_random_player_data()
     print(data)
+ 
