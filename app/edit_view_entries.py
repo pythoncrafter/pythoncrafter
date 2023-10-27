@@ -1,15 +1,33 @@
 import sqlite3
 
-conn = sqlite3.connect('research_data.db')
-c = conn.cursor()
+# Function to edit and view entries
+def edit_view_entries():
+    conn = sqlite3.connect('research_data.db')
+    c = conn.cursor()
 
-# Example of editing data in the Players table
-c.execute("UPDATE Players SET PlayerName = ? WHERE PlayerID = ?", ('Jane Doe', 1))
+    print("Viewing all players:")
+    c.execute("SELECT * FROM Players")
+    players = c.fetchall()
+    for player in players:
+        print(player)
 
-# Example of viewing an entry in the Players table
-c.execute("SELECT * FROM Players WHERE PlayerID = ?", (1,))
-row = c.fetchone()
-print(row)
+    print("\nViewing all coaches:")
+    c.execute("SELECT * FROM Coaches")
+    coaches = c.fetchall()
+    for coach in coaches:
+        print(coach)
 
-conn.commit()
-conn.close()
+    print("\nEditing a player's age:")
+    c.execute("UPDATE Players SET Age = 25 WHERE PlayerID = 1")
+
+    print("\nViewing all players after edit:")
+    c.execute("SELECT * FROM Players")
+    players = c.fetchall()
+    for player in players:
+        print(player)
+
+    conn.commit()
+    conn.close()
+
+# Call the function to edit and view entries
+edit_view_entries()
