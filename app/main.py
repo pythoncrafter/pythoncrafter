@@ -9,10 +9,13 @@ from kivy.uix.button import Button
 import os 
 
 class ResearchDatabase:
+    db_name = 'research_data.db'
     def __init__(self, db_name):
+        
         self.conn = sqlite3.connect(db_name)
         self.c = self.conn.cursor()
         self.create_tables()
+        self.validate_database()
 
     @staticmethod
     def get_data_folder_path(file_path):
