@@ -103,7 +103,6 @@ class ResearchDatabase:
         except sqlite3.Error as e:
             print(f"Error occurred: {e}")
 
-
 class User(ResearchDatabase):
     def create_player_entry(self, player_data):
         query = "INSERT INTO Players (PlayerName, Age, Nationality, Sport, TeamID, TeamName) VALUES (?, ?, ?, ?, ?, ?)"
@@ -182,16 +181,16 @@ class ResearchApp(App):
         return layout
 
     def add_player(self, instance):
-        # Get the player information from the input fields
         player_data = (
-            player_name_input.text,
-            player_age_input.text,
-            nationality_input.text,
-            sport_input.text,
-            team_id_input.text,
-            team_name_input.text
+            self.player_name_input.text,
+            self.player_age_input.text,
+            self.nationality_input.text,
+            self.sport_input.text,
+            self.team_id_input.text,
+            self.team_name_input.text
         )
-        self.user.create_player_entry(player_data)
+        query = "INSERT INTO Players (PlayerName, Age, Nationality, Sport, TeamID, TeamName) VALUES (?, ?, ?, ?, ?, ?)"
+        self.research_db.insert_data(query, player_data)
 
     def add_coach(self, instance):
         # Get the coach information from the input fields
