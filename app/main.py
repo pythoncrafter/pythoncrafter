@@ -9,10 +9,10 @@ def main():
     create_tables()
 
     generate_random_player_data()
-    
+ '''   
     read_data()
     print("Data read from the database.")
-'''
+
     edit_view_entries()
     print("Entries edited and viewed from the database.")
 '''
