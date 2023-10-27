@@ -39,11 +39,11 @@ conn.close()
 def print_generated_data():
     for data in generated_data:
         print(f"PlayerName: {data['PlayerName']}, \n\n"
-              f"Age: {data['Age']}, "
-              f"Nationality: {data['Nationality']}, "
-              f"Sport: {data['Sport']}, "
-              f"TeamID: {data['TeamID']}, "
-              f"TeamName: {data['TeamName']}")
+              f"Age: {data['Age']}, \n"
+              f"Nationality: {data['Nationality']}, \n"
+              f"Sport: {data['Sport']}, \n"
+              f"TeamID: {data['TeamID']}, \n"
+              f"TeamName: {data['TeamName']}\n")
 
 if __name__ == '__main__':
     generate_random_player_data()
