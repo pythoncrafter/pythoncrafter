@@ -19,13 +19,16 @@ class ResearchDatabase:
         current_directory = os.path.dirname(os.path.abspath(file_path))
         project_directory = os.path.dirname(current_directory)
         return os.path.join(project_directory, 'data', 'research_data.db')
-    
+
     def validate_database(self):
-        try:
-            self.c.execute("SELECT * FROM Players")
-            print("Database validated successfully.")
-        except sqlite3.Error as e:
-            print(f"Error occurred: {e}")
+        if not os.path.isfile(self.db_name):
+            print("Database file not found. Creating a new database.")
+            self.conn = sqlite3.connect(self.db_name)
+            self.c = self.conn.cursor()
+            self.create_tables()
+            print("Database created successfully.")
+        else:
+            print("Database exists.")
             
     def create_tables(self):
         self.c.execute('''CREATE TABLE IF NOT EXISTS Players (
