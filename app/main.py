@@ -20,13 +20,13 @@ class ResearchDatabase:
         project_directory = os.path.dirname(current_directory)
         return os.path.join(project_directory, 'data', 'research_data.db')
     
-    @staticmethod
     def validate_database(self):
         try:
             self.c.execute("SELECT * FROM Players")
             print("Database validated successfully.")
         except sqlite3.Error as e:
             print(f"Error occurred: {e}")
+            
     def create_tables(self):
         self.c.execute('''CREATE TABLE IF NOT EXISTS Players (
                          PlayerID INTEGER PRIMARY KEY,
@@ -178,6 +178,7 @@ if __name__ == '__main__':
     admin = Admin(data_folder_path)
     coach = Coach(data_folder_path)
     trainer = Trainer(data_folder_path)
+    research_db.validate_database()
     
     # Run the Kivy app
     ResearchApp().run()
