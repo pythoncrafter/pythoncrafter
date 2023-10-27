@@ -8,13 +8,14 @@ fake = Faker()
 # Function to generate random player data
 def generate_random_player_data():
     countries = list(pycountry.countries)
+    teams = ["Lions", "Tigers", "Bears", "Eagles", "Sharks", "Wolves", "Falcons", "Dragons", "Panthers", "Cobras"]
     player_data = {
         "PlayerName": fake.name(),
         "Age": random.randint(18, 40),
         "Nationality": random.choice(countries).name,
         "Sport": random.choice(["Soccer", "Basketball", "Tennis", "Golf", "Cricket"]),
         "TeamID": random.randint(1, 20),
-        "TeamName": f"Team{random.randint(1, 10)}"
+        "TeamName": f"{random.choice(teams)} {random.randint(1, 10)}"
     }
     return player_data
 
