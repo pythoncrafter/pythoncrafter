@@ -14,6 +14,12 @@ class ResearchDatabase:
         self.c = self.conn.cursor()
         self.create_tables()
 
+    def get_data_folder_path(file_path):
+        current_directory = os.path.dirname(os.path.abspath(file_path))
+        project_directory = os.path.dirname(current_directory)
+        return os.path.join(project_directory, 'data', 'research_data.db')
+
+    
     def create_tables(self):
         self.c.execute('''CREATE TABLE IF NOT EXISTS Players (
                          PlayerID INTEGER PRIMARY KEY,
@@ -158,13 +164,15 @@ class ResearchApp(App):
 
 
 if __name__ == '__main__':
-    research_db = ResearchDatabase('data/research_data.db')
-    user = User('data/research_data.db')
-    admin = Admin('data/research_data.db')
-    coach = Coach('data/research_data.db')
-    trainer = Trainer('data/research_data.db')
-
+    data_folder_path = get_data_folder_path(__file__)
+    research_db = ResearchDatabase(data_folder_path)
+    user = User(data_folder_path)
+    admin = Admin(data_folder_path)
+    coach = Coach(data_folder_path)
+    trainer = Trainer(data_folder_path)
+    
     # Run the Kivy app
     ResearchApp().run()
-
+    
     research_db.close_connection()
+
