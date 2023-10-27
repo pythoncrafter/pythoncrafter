@@ -171,14 +171,15 @@ class ResearchApp(App):
 
 
 if __name__ == '__main__':
-    ResearchDatabase.validate_database()
     data_folder_path = ResearchDatabase.get_data_folder_path(__file__)
     research_db = ResearchDatabase(data_folder_path)
     user = User(data_folder_path)
     admin = Admin(data_folder_path)
     coach = Coach(data_folder_path)
     trainer = Trainer(data_folder_path)
-    research_db.validate_database()
+    
+    research_db_instance = ResearchDatabase(data_folder_path)
+    research_db_instance.validate_database()
     
     # Run the Kivy app
     app = ResearchApp()
