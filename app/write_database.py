@@ -38,7 +38,7 @@ conn.close()
 # Function to print all the generated data
 def print_generated_data():
     for data in generated_data:
-        print(f"PlayerName: {data['PlayerName']}, /n/n"
+        print(f"PlayerName: {data['PlayerName']}, \n\n"
               f"Age: {data['Age']}, "
               f"Nationality: {data['Nationality']}, "
               f"Sport: {data['Sport']}, "
