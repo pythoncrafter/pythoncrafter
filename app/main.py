@@ -9,7 +9,6 @@ def main():
     create_tables()
 
     generate_random_player_data()
-    print("Data written to the database.")
 
     read_data()
     print("Data read from the database.")
