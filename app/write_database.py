@@ -17,6 +17,7 @@ def generate_random_player_data():
         "TeamID": random.randint(1, 20),
         "TeamName": f"{random.choice(teams)}"
     }
+    print(f"Data written to the database: {player_data}")
     return player_data
 
 # Connect to the database

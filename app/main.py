@@ -7,7 +7,6 @@ from edit_view_entries import edit_view_entries
 
 def main():
     create_tables()
-    print("Tables created.") 
 
     generate_random_player_data()
     print("Data written to the database.")
