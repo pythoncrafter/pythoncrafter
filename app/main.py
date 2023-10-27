@@ -7,7 +7,7 @@ from edit_view_entries import edit_entries
 
 def main():
     create_tables()
-    print("Tables created.")
+    print("Tables created.") 
 
     write_data()
     print("Data written to the database.")
