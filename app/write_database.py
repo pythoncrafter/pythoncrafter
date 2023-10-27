@@ -39,8 +39,6 @@ conn.close()
 def print_generated_data():
     print(generated_data)
 
-# Call the function to print the generated data
-print_generated_data()
 
 if __name__ == '__main__':
     generate_random_player_data()
