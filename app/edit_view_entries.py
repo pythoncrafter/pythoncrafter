@@ -29,5 +29,6 @@ def edit_view_entries():
     conn.commit()
     conn.close()
 
-# Call the function to edit and view entries
-edit_view_entries()
+if __name__ == '__main__':
+    # Call the function to edit and view entries
+    edit_view_entries()
