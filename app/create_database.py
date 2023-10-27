@@ -1,10 +1,17 @@
-# create_database.py
-
 import sqlite3
 
 def create_tables():
-    conn = sqlite3.connect('research_data.db')
+    db_name = 'research_data.db'
+    conn = sqlite3.connect(db_name)
     c = conn.cursor()
+
+    c.execute("SELECT name FROM sqlite_master WHERE type='table';")
+    tables = c.fetchall()
+
+    if tables:
+        print("Tables already exist in the database.")
+        conn.close()
+        return
 
     # Create the necessary tables
     c.execute('''CREATE TABLE IF NOT EXISTS Players (
