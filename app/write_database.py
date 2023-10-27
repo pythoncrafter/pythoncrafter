@@ -15,7 +15,7 @@ def generate_random_player_data():
         "Nationality": random.choice(countries).name,
         "Sport": random.choice(["Soccer", "Basketball", "Tennis", "Golf", "Cricket"]),
         "TeamID": random.randint(1, 20),
-        "TeamName": f"{random.choice(teams)} {random.randint(1, 10)}"
+        "TeamName": f"{random.choice(teams)}"
     }
     return player_data
 
