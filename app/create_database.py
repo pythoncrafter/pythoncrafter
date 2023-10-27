@@ -1,7 +1,9 @@
+# create_database.py
+
 import sqlite3
 
-def create_tables(db_name):
-    conn = sqlite3.connect(db_name)
+def create_tables():
+    conn = sqlite3.connect('research_data.db')
     c = conn.cursor()
 
     # Create the necessary tables
@@ -58,5 +60,5 @@ def create_tables(db_name):
     conn.commit()
     conn.close()
 
-# Call the function to create the tables
-create_tables('research_data.db')
+if __name__ == '__main__':
+    create_tables()
