@@ -6,6 +6,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
+import os
 
 class ResearchDatabase:
     def __init__(self, db_name):
@@ -157,7 +158,6 @@ class ResearchApp(App):
 
 
 if __name__ == '__main__':
-    db_name = research_db
     research_db = ResearchDatabase('data/research_data.db')
     user = User('data/research_data.db')
     admin = Admin('data/research_data.db')
