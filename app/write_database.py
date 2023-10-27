@@ -4,6 +4,7 @@ from faker import Faker
 import pycountry
 
 fake = Faker()
+generated_data = []
 
 # Function to generate random player data
 def generate_random_player_data():
@@ -17,6 +18,7 @@ def generate_random_player_data():
         "TeamID": random.randint(1, 20),
         "TeamName": f"{random.choice(teams)}"
     }
+    generated_data.append(player_data)
     return player_data
 
 # Connect to the database
@@ -30,11 +32,8 @@ for _ in range(5):
                  VALUES (?, ?, ?, ?, ?, ?)''', 
               (data["PlayerName"], data["Age"], data["Nationality"], data["Sport"], data["TeamID"], data["TeamName"]))
 
-# View the data that was written to the database
-c.execute('SELECT * FROM Players')
-print("Data written to the database:")
-for row in c.fetchall():
-    print(row)
-
 conn.commit()
 conn.close()
+
+# Print all the generated data
+print(generated_data)
