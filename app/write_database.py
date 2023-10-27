@@ -17,7 +17,6 @@ def generate_random_player_data():
         "TeamID": random.randint(1, 20),
         "TeamName": f"{random.choice(teams)}"
     }
-    print(f"Data written to the database: {player_data}")
     return player_data
 
 # Connect to the database
@@ -30,6 +29,12 @@ for _ in range(5):
     c.execute('''INSERT INTO Players (PlayerName, Age, Nationality, Sport, TeamID, TeamName) 
                  VALUES (?, ?, ?, ?, ?, ?)''', 
               (data["PlayerName"], data["Age"], data["Nationality"], data["Sport"], data["TeamID"], data["TeamName"]))
+
+# View the data that was written to the database
+c.execute('SELECT * FROM Players')
+print("Data written to the database:")
+for row in c.fetchall():
+    print(row)
 
 conn.commit()
 conn.close()
