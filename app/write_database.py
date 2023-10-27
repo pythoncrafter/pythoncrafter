@@ -1,12 +1,15 @@
 import sqlite3
 import random
+from faker import Faker
 import pycountry
+
+fake = Faker()
 
 # Function to generate random player data
 def generate_random_player_data():
     countries = list(pycountry.countries)
     player_data = {
-        "PlayerName": f"Player{random.randint(1, 100)}",
+        "PlayerName": fake.name(),
         "Age": random.randint(18, 40),
         "Nationality": random.choice(countries).name,
         "Sport": random.choice(["Soccer", "Basketball", "Tennis", "Golf", "Cricket"]),
