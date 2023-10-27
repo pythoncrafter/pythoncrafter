@@ -9,7 +9,7 @@ def main():
     create_tables()
 
     generate_random_player_data()
- '''   
+'''   
     read_data()
     print("Data read from the database.")
 
