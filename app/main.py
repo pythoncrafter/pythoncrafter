@@ -181,7 +181,8 @@ if __name__ == '__main__':
     research_db.validate_database()
     
     # Run the Kivy app
-    ResearchApp().run()
+    app = ResearchApp()
+    app.run()
     
     research_db.close_connection()
 
