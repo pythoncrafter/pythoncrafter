@@ -20,6 +20,13 @@ class ResearchDatabase:
         project_directory = os.path.dirname(current_directory)
         return os.path.join(project_directory, 'data', 'research_data.db')
     
+    @staticmethod
+    def validate_database(self):
+        try:
+            self.c.execute("SELECT * FROM Players")
+            print("Database validated successfully.")
+        except sqlite3.Error as e:
+            print(f"Error occurred: {e}")
     def create_tables(self):
         self.c.execute('''CREATE TABLE IF NOT EXISTS Players (
                          PlayerID INTEGER PRIMARY KEY,
@@ -164,6 +171,7 @@ class ResearchApp(App):
 
 
 if __name__ == '__main__':
+    research_db.validate_database()
     data_folder_path = ResearchDatabase.get_data_folder_path(__file__)
     research_db = ResearchDatabase(data_folder_path)
     user = User(data_folder_path)
