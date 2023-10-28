@@ -38,8 +38,8 @@ conn.close()
 # Function to print all the generated data
 def print_generated_data():
     for data in generated_data:
-        print(f"Player added: "
-              f"PlayerName: {data['PlayerName']}, \n"
+        print("Player added: \n"
+        print(f"PlayerName: {data['PlayerName']}, \n"
               f"Age: {data['Age']}, \n"
               f"Nationality: {data['Nationality']}, \n"
               f"Sport: {data['Sport']}, \n"
