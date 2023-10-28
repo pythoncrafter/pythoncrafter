@@ -36,4 +36,4 @@ def view_edit_entries():
 
 if __name__ == '__main__':
     # Call the function to view and edit entries
-    view_edit_entries)
+    view_edit_entries()
