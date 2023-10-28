@@ -1,7 +1,7 @@
 import sqlite3
 
 # Function to view, edit, and delete entries
-def view_edit_delete_entries():
+def view_edit_entries():
     conn = sqlite3.connect('research_data.db')
     c = conn.cursor()
 
@@ -40,4 +40,4 @@ def view_edit_delete_entries():
 
 if __name__ == '__main__':
     # Call the function to view, edit, and delete entries
-    view_edit_delete_entries()
+    view_edit_entries()
