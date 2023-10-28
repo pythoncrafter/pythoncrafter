@@ -9,7 +9,7 @@ def create_tables():
     tables = c.fetchall()
 
     if tables:
-        print("Tables already exist in the database.")
+        print("Tables already exist in the database.\n")
         conn.close()
         return
 
