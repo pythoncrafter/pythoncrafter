@@ -1,23 +1,29 @@
 import sqlite3
+from tabulate import tabulate
 
 def read_data():
     conn = sqlite3.connect('research_data.db')
     c = conn.cursor()
 
     c.execute('SELECT * FROM Players')
-    print(c.fetchall())
+    players = c.fetchall()
+    print(tabulate(players, headers=[i[0] for i in c.description]))
 
     c.execute('SELECT * FROM TrainingActivities')
-    print(c.fetchall())
+    activities = c.fetchall()
+    print(tabulate(activities, headers=[i[0] for i in c.description]))
 
     c.execute('SELECT * FROM DecisionMaking')
-    print(c.fetchall())
+    decision_making = c.fetchall()
+    print(tabulate(decision_making, headers=[i[0] for i in c.description]))
 
     c.execute('SELECT * FROM Coaches')
-    print(c.fetchall())
+    coaches = c.fetchall()
+    print(tabulate(coaches, headers=[i[0] for i in c.description]))
 
     c.execute('SELECT * FROM Trainers')
-    print(c.fetchall())
+    trainers = c.fetchall()
+    print(tabulate(trainers, headers=[i[0] for i in c.description]))
 
     conn.close()
 
